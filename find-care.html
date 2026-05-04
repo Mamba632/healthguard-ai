@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Care | HealthConnect</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="health.css">
+    <script src="script.js" defer>
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+<div class="nav-shell">
+<a class="brand" href="index.html">
+<span class="brand-mark">HC</span> HealthConnect</a>
+<nav class="nav-links" aria-label="Primary navigation">
+<a href="index.html">Home</a>
+<a class="active" href="find-care.html">Find Care</a>
+<a href="self-care.html">Self-Care</a>
+<a href="contact.html">Contact</a>
+</nav>
+<div class="nav-tools">
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color mode">&#9728;&#65039;</button>
+</div>
+</div>
+</header>
+    <main id="main" class="find-healthcare-page">
+        <section class="page-hero healthcare-hero reveal">
+<div class="page-hero-inner">
+<span class="kicker">Find Healthcare</span>
+<h1>Check symptoms and find care with less stress.</h1>
+<p>Use the simple checker for first-step guidance, then search nearby hospitals, clinics, pharmacies, or emergency care from the same page.</p>
+<div class="hero-stat-row">
+<span>12 symptom rules</span>
+<span>4 severity levels</span>
+<span>Map search ready</span>
+</div>
+</div>
+</section>
+
+        <section class="section healthcare-tools reveal">
+            <div class="section-header tool-section-header">
+<span class="kicker">Guided care flow</span>
+<h2>Start with a symptom, then move to the right next step.</h2>
+<p>This page keeps the workflow focused: check basic guidance, search care nearby, and open the map when needed.</p>
+</div>
+            <div class="care-workspace">
+                <article class="care-tool-card symptom-tool reveal">
+                    <div class="tool-card-header">
+<span class="tool-step">01</span>
+<div>
+<h2>Symptom checker</h2>
+<p>Choose one common symptom and get rule-based guidance instantly.</p>
+</div>
+</div>
+                    <form class="form-stack" data-symptom-form>
+                        <label for="symptomInput">Select symptom</label>
+                        <select id="symptomInput" data-symptom-input required>
+                            <option value="" selected disabled>Select a symptom</option>
+                            <option value="fever">Fever</option>
+<option value="cold">Cold</option>
+<option value="headache">Headache</option>
+<option value="cough">Cough</option>
+<option value="stomach">Stomach Pain</option>
+<option value="vomiting">Vomiting</option>
+<option value="weakness">Weakness</option>
+<option value="allergy">Allergy</option>
+<option value="throat">Sore Throat</option>
+<option value="dizziness">Dizziness</option>
+<option value="chest">Chest Pain</option>
+<option value="breathing">Breathing Difficulty</option>
+                        </select>
+                        <button type="submit">Show guidance</button>
+                    </form>
+                    <div class="result-area" data-symptom-output>
+</div>
+                </article>
+
+                <article class="care-tool-card care-search-tool reveal delay-1">
+                    <div class="tool-card-header">
+<span class="tool-step">02</span>
+<div>
+<h2>Care search</h2>
+<p>Search by area and care type, or let the browser use your location.</p>
+</div>
+</div>
+                    <form class="form-stack" data-hospital-form>
+                        <label for="hospitalLocation">City or area</label>
+                        <input id="hospitalLocation" data-hospital-input type="text" placeholder="Example: Ahmedabad">
+                        <label for="careType">Care type</label>
+                        <select id="careType" data-care-type>
+<option value="hospitals clinics">Hospital / Clinic</option>
+<option value="pharmacy">Pharmacy</option>
+<option value="emergency hospital">Emergency</option>
+<option value="diagnostic center">Diagnostic center</option>
+</select>
+                        <label class="checkbox-row">
+<input type="checkbox" data-open-now> Open now</label>
+                        <div class="button-row">
+<button type="submit">Search map</button>
+<button type="button" class="btn secondary" data-location-button>Use my location</button>
+</div>
+                    </form>
+                    <div class="care-note">
+<strong>Tip</strong>
+<span>For urgent symptoms like chest pain or breathing difficulty, use emergency services first.</span>
+</div>
+                    <div class="result-area" data-hospital-results>
+</div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section map-section reveal">
+            <div class="map-copy">
+<span class="kicker">Nearby care</span>
+<h2>Map preview updates after search.</h2>
+<p>The map starts with hospitals near you. Search a city, area, or care type to update the preview and open the same result in Google Maps.</p>
+<div class="map-tags">
+<span>Hospitals</span>
+<span>Clinics</span>
+<span>Pharmacies</span>
+<span>Emergency</span>
+</div>
+</div>
+            <div class="map-frame map-frame-large">
+<iframe data-map-frame title="Nearby healthcare map" src="https://maps.google.com/maps?q=hospitals%20near%20me&output=embed" loading="lazy">
+</iframe>
+</div>
+        </section>
+    </main>
+    <a class="emergency-float" href="contact.html">Emergency</a>
+    <footer class="footer">
+<div class="footer-inner">
+<div>
+<a class="brand" href="index.html">
+<span class="brand-mark">HC</span> HealthConnect</a>
+<p>HealthConnect helps you check common symptoms, find nearby care, and browse simple self-care guidance.</p>
+</div>
+<div class="footer-column">
+<strong>Explore</strong>
+<a href="index.html">Home</a>
+<a href="find-care.html">Find Care</a>
+<a href="self-care.html">Self-Care</a>
+</div>
+<div class="footer-column">
+<strong>Support</strong>
+<a href="contact.html">Contact</a>
+<a href="about.html">About HealthConnect</a>
+<a href="future-scope.html">Future Scope</a>
+<a href="contact.html">Emergency</a>
+</div>
+</div>
+<p class="notice-line">HealthConnect provides educational guidance only. It is not a medical diagnosis or a substitute for professional care.</p>
+</footer>
+</body>
+</html>

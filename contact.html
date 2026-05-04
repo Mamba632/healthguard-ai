@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | HealthConnect</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="health.css">
+    <script src="script.js" defer>
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+<div class="nav-shell">
+<a class="brand" href="index.html">
+<span class="brand-mark">HC</span> HealthConnect</a>
+<nav class="nav-links" aria-label="Primary navigation">
+<a href="index.html">Home</a>
+<a href="find-care.html">Find Care</a>
+<a href="self-care.html">Self-Care</a>
+<a class="active" href="contact.html">Contact</a>
+</nav>
+<div class="nav-tools">
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color mode">&#9728;&#65039;</button>
+</div>
+</div>
+</header>
+    <main id="main">
+        <section class="page-hero contact-hero">
+<div class="page-hero-inner">
+<span class="kicker">Contact</span>
+<h1>Get help, send feedback, or request a basic appointment.</h1>
+<p>Use this page for general support and quick contact actions. For urgent symptoms, call emergency services or visit the nearest hospital immediately.</p>
+<div class="hero-actions">
+<a class="btn" href="#contactForms">Send message</a>
+<button class="btn danger" type="button" onclick="findNearestHospital()">Find nearest hospital</button>
+</div>
+</div>
+</section>
+
+        <section class="contact-overview reveal" aria-label="Contact options">
+            <article class="contact-method">
+<span>01</span>
+<h3>General support</h3>
+<p>Ask a question about the website, guidance flow, or project features.</p>
+<a href="mailto:support@healthconnect.local">support@healthconnect.local</a>
+</article>
+            <article class="contact-method">
+<span>02</span>
+<h3>Feedback</h3>
+<p>Share what feels confusing, missing, or useful so the project can improve.</p>
+<a href="#feedbackForm">Open feedback form</a>
+</article>
+            <article class="contact-method">
+<span>03</span>
+<h3>Care search</h3>
+<p>Use location search when you need nearby hospitals, clinics, or pharmacies.</p>
+<a href="find-care.html">Find healthcare</a>
+</article>
+        </section>
+
+        <section class="contact-workspace reveal" id="contactForms">
+            <div class="contact-form-panel" id="feedbackForm">
+                <span class="kicker">Message</span>
+                <h2>Send feedback</h2>
+                <p>Tell us what you want improved in the HealthConnect experience.</p>
+                <form class="form-stack contact-form" action="#" method="post" data-demo-form>
+                    <div class="form-grid two-columns">
+                        <div class="field">
+<label for="name">Name</label>
+<input id="name" name="name" type="text" placeholder="Your name" required>
+</div>
+                        <div class="field">
+<label for="phone">Contact number</label>
+<input id="phone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]{10}" placeholder="10 digit mobile number" title="Enter a 10 digit mobile number" required>
+</div>
+                    </div>
+                    <div class="field">
+<label for="email">Email</label>
+<input id="email" name="email" type="email" placeholder="you@example.com" required>
+</div>
+                    <div class="field">
+<label for="message">Message</label>
+<textarea id="message" name="message" minlength="10" placeholder="Write your feedback or question" required>
+</textarea>
+</div>
+                    <button type="submit">Submit feedback</button>
+<p class="form-response" data-form-response aria-live="polite">
+</p>
+                </form>
+            </div>
+
+            <aside class="appointment-panel">
+                <span class="kicker">Appointment</span>
+                <h2>Request appointment</h2>
+                <p>Appointment requests are in preview mode for now. A production version should connect this form to a secure backend before storing or sending patient details.</p>
+                <form class="form-stack" action="#" method="post" data-demo-form>
+                    <div class="field">
+<label for="patientName">Patient name</label>
+<input id="patientName" name="patientName" type="text" placeholder="Patient name" required>
+</div>
+                    <div class="field">
+<label for="appointmentType">Appointment type</label>
+<select id="appointmentType" name="appointmentType" required>
+<option>General checkup</option>
+<option>Emergency consultation</option>
+<option>Online consultation</option>
+</select>
+</div>
+                    <div class="field">
+<label for="preferredDate">Preferred date</label>
+<input id="preferredDate" name="preferredDate" type="date" required>
+</div>
+                    <button type="submit" class="btn secondary">Request appointment</button>
+<p class="form-response" data-form-response aria-live="polite">
+</p>
+                </form>
+                <div class="contact-note">
+<strong>Important</strong>
+<span>Do not wait for a website reply during a medical emergency.</span>
+</div>
+            </aside>
+        </section>
+
+        <section class="emergency-section reveal" id="emergency" aria-label="Emergency helplines">
+            <div class="emergency-copy">
+<span class="kicker">Emergency</span>
+<h2>Keep urgent numbers visible and easy to tap.</h2>
+<p>These shortcuts are for quick access. Confirm the correct emergency number for your location when using this project outside India.</p>
+<button type="button" onclick="findNearestHospital()">Find nearest hospital</button>
+</div>
+            <div class="helpline-grid">
+                <a class="helpline-card" href="tel:108">
+<span>108</span>
+<strong>Ambulance</strong>
+<small>Emergency medical transport</small>
+</a>
+                <a class="helpline-card" href="tel:102">
+<span>102</span>
+<strong>Medical helpline</strong>
+<small>Basic medical support line</small>
+</a>
+                <a class="helpline-card" href="tel:100">
+<span>100</span>
+<strong>Police</strong>
+<small>Public safety emergency</small>
+</a>
+                <a class="helpline-card" href="tel:101">
+<span>101</span>
+<strong>Fire</strong>
+<small>Fire and rescue service</small>
+</a>
+            </div>
+        </section>
+    </main>
+    <a class="emergency-float" href="#emergency">Emergency</a>
+    <footer class="footer">
+<div class="footer-inner">
+<div>
+<a class="brand" href="index.html">
+<span class="brand-mark">HC</span> HealthConnect</a>
+<p>HealthConnect helps you check common symptoms, find nearby care, and browse simple self-care guidance.</p>
+</div>
+<div class="footer-column">
+<strong>Explore</strong>
+<a href="index.html">Home</a>
+<a href="find-care.html">Find Care</a>
+<a href="self-care.html">Self-Care</a>
+</div>
+<div class="footer-column">
+<strong>Support</strong>
+<a href="contact.html">Contact</a>
+<a href="about.html">About HealthConnect</a>
+<a href="future-scope.html">Future Scope</a>
+<a href="#emergency">Emergency</a>
+</div>
+</div>
+<p class="notice-line">HealthConnect provides educational guidance only. It is not a medical diagnosis or a substitute for professional care.</p>
+</footer>
+</body>
+</html>

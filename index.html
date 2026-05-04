@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | HealthConnect</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="health.css">
+    <script src="script.js" defer>
+</script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+        <div class="nav-shell">
+            <a class="brand" href="index.html">
+<span class="brand-mark">HC</span> HealthConnect</a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a class="active" href="index.html">Home</a>
+                <a href="find-care.html">Find Care</a>
+                <a href="self-care.html">Self-Care</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-tools">
+                <button type="button" class="theme-toggle" data-theme-toggle aria-label="Toggle color mode">&#9728;&#65039;</button>
+                
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+    <section class="home-hero reveal">
+        <div class="home-hero-content">
+            <span class="kicker">HealthConnect healthcare website</span>
+            <h1>Basic healthcare help without confusion.</h1>
+            <p class="hero-copy">A simple healthcare companion for checking common symptoms, finding nearby care, and opening self-care resources from one place.</p>
+            <div class="hero-actions">
+                <a class="btn" href="find-care.html">Start symptom check</a>
+                <button class="btn danger" type="button" onclick="findNearestHospital()">Find nearby hospital</button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section intro-strip reveal">
+        <div class="intro-card">
+            <span class="kicker">Problem statement</span>
+            <h2>No simple centralized platform for symptoms, hospitals, and basic guidance.</h2>
+            <p>When people feel sick, they often face confusing symptoms, slow manual hospital search, too much unverified information, and scattered tools.</p>
+        </div>
+        <div class="intro-metrics">
+            <div>
+<strong>12</strong>
+<span>symptom rules</span>
+</div>
+            <div>
+<strong>4</strong>
+<span>severity levels</span>
+</div>
+            <div>
+<strong>5</strong>
+<span>resource topics</span>
+</div>
+        </div>
+    </section>
+
+    <section class="section split-story reveal">
+        <div>
+            <span class="kicker">Solution</span>
+            <h2>One platform for first-step healthcare help.</h2>
+            <p>HealthConnect turns common symptom input into clear guidance, severity awareness, basic remedies, and nearby care search options.</p>
+        </div>
+        <div class="story-list">
+            <article>
+<strong>Symptom awareness</strong>
+<span>Helps users understand common symptoms.</span>
+</article>
+            <article>
+<strong>Hospital search</strong>
+<span>Opens nearby care options using maps.</span>
+</article>
+            <article>
+<strong>Self-care resources</strong>
+<span>Shows videos and basic health tips.</span>
+</article>
+            <article>
+<strong>Emergency access</strong>
+<span>Keeps helpline numbers easy to reach.</span>
+</article>
+        </div>
+    </section>
+
+    <section class="section feature-showcase reveal">
+        <div class="section-header center">
+            <span class="kicker">Key features</span>
+            <h2>Designed for quick and clear healthcare navigation.</h2>
+            <p>Core tools are designed for fast decisions, clear next steps, and a calmer healthcare search experience.</p>
+        </div>
+        <div class="features-grid">
+            <a class="feature-card elevated reveal" href="find-care.html">
+                <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1000&q=80')">
+</div>
+                <h3>Symptom checker</h3>
+                <p>Rule-based output, severity labels, basic remedies, and warning guidance.</p>
+            </a>
+            <a class="feature-card elevated reveal delay-1" href="find-care.html">
+                <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1000&q=80')">
+</div>
+                <h3>Find healthcare</h3>
+                <p>Search hospitals, clinics, pharmacies, emergency care, and diagnostic centers.</p>
+            </a>
+            <a class="feature-card elevated reveal delay-2" href="self-care.html">
+                <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1000&q=80')">
+</div>
+                <h3>Self-care resources</h3>
+                <p>Browse topic-based educational videos and simple home-care awareness.</p>
+            </a>
+        </div>
+    </section>
+
+
+    <section class="section about-product-section reveal">
+        <div>
+            <span class="kicker">About HealthConnect</span>
+            <h2>A personal healthcare helper built for quick, calm guidance.</h2>
+            <p>HealthConnect brings symptom awareness, nearby care search, and self-care resources into one lightweight web experience. It is designed for everyday users who need a clear starting point without scrolling through scattered information.</p>
+        </div>
+        <a class="btn secondary" href="about.html">Learn about HealthConnect</a>
+    </section>
+    <section class="section workflow-band reveal">
+        <div class="section-header center">
+            <span class="kicker">Workflow</span>
+            <h2>How the website guides a user.</h2>
+        </div>
+        <div class="workflow-steps">
+            <div>
+<span>1</span>
+<strong>Open website</strong>
+<p>User starts from the home page.</p>
+</div>
+            <div>
+<span>2</span>
+<strong>Select symptom</strong>
+<p>JavaScript checks the selected condition.</p>
+</div>
+            <div>
+<span>3</span>
+<strong>View guidance</strong>
+<p>Possible issue, severity, and remedies appear.</p>
+</div>
+            <div>
+<span>4</span>
+<strong>Find care</strong>
+<p>Map search opens nearby healthcare options.</p>
+</div>
+        </div>
+    </section>
+
+    <section class="section audience-section reveal">
+        <div class="audience-copy">
+            <span class="kicker">Target audience</span>
+            <h2>Built for students, families, elderly users, and the public.</h2>
+            <p>The experience uses direct actions, readable sections, and simple wording so users can move quickly without feeling overwhelmed.</p>
+            <a class="btn" href="find-care.html">Try HealthConnect</a>
+        </div>
+        <div class="audience-grid">
+            <article>
+<strong>Students</strong>
+<span>Quick health info for daily issues.</span>
+</article>
+            <article>
+<strong>Families</strong>
+<span>Common symptom support in one place.</span>
+</article>
+            <article>
+<strong>Elderly users</strong>
+<span>Simple navigation and direct buttons.</span>
+</article>
+            <article>
+<strong>General public</strong>
+<span>Hospital search and emergency access.</span>
+</article>
+        </div>
+    </section>
+</main>
+
+    <a class="emergency-float" href="contact.html">Emergency</a>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+<a class="brand" href="index.html">
+<span class="brand-mark">HC</span> HealthConnect</a>
+<p>HealthConnect helps you check common symptoms, find nearby care, and browse simple self-care guidance.</p>
+</div>
+            <div class="footer-column">
+<strong>Explore</strong>
+<a href="index.html">Home</a>
+<a href="find-care.html">Find Care</a>
+<a href="self-care.html">Self-Care</a>
+</div>
+            <div class="footer-column">
+<strong>Support</strong>
+<a href="contact.html">Contact</a>
+<a href="about.html">About HealthConnect</a>
+<a href="future-scope.html">Future Scope</a>
+<a href="contact.html">Emergency</a>
+</div>
+        </div>
+        <p class="notice-line">HealthConnect provides educational guidance only. It is not a medical diagnosis or a substitute for professional care.</p>
+    </footer>
+</body>
+</html>
+
+
+
+
