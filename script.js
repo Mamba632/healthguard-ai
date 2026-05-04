@@ -275,6 +275,155 @@ function setupAccessibleEnhancements() {
         link.setAttribute("title", "Emergency contacts");
     });
 }
+
+function chatbotQuickReplies() {
+    return ["Fever", "Chest pain", "Find hospital", "Self-care"];
+}
+
+function getChatbotIntro() {
+    return "Hi, I am HealthConnect AI. Tell me a symptom or ask about hospitals, emergency help, or self-care. I can give first-step educational guidance.";
+}
+
+function createChatbotMessage(content, sender = "bot") {
+    const message = document.createElement("div");
+    message.className = `chatbot-message ${sender === "user" ? "user" : "bot"}`;
+    message.innerHTML = content;
+    return message;
+}
+
+function createChatbotActions(actions = []) {
+    if (!actions.length) return "";
+    return `<div class="chatbot-actions">${actions.map((action) => {
+        if (action.type === "button") return `<button type="button" data-chatbot-action="${action.action}">${action.label}</button>`;
+        return `<a href="${action.href}" ${action.external ? 'target="_blank" rel="noopener"' : ""}>${action.label}</a>`;
+    }).join("")}</div>`;
+}
+
+function buildChatbotSymptomReply(result) {
+    const isEmergency = result.severity === "Emergency";
+    const remedies = result.remedies.map((item) => `<li>${escapeHTML(item)}</li>`).join("");
+    const actions = [
+        { label: "Find hospitals", type: "button", action: "find-care" },
+        { label: "Self-care", href: "self-care.html" }
+    ];
+
+    if (isEmergency) {
+        actions.unshift({ label: "Emergency contacts", href: "contact.html" });
+    }
+
+    return `<strong>${escapeHTML(result.title)}</strong><span class="chatbot-severity ${severityClass(result.severity)}">${escapeHTML(result.severity)}</span><p>${escapeHTML(result.output)}</p><ul>${remedies}</ul><p class="chatbot-safety">This is educational guidance only. For severe, unusual, repeated, or worsening symptoms, contact a qualified doctor.</p>${createChatbotActions(actions)}`;
+}
+
+function buildChatbotReply(message) {
+    const term = normalizeSearchTerm(message);
+    const symptom = analyzeSymptoms(message);
+
+    if (!term) {
+        return "Tell me what you are feeling, for example fever, cough, headache, stomach pain, chest pain, or breathing difficulty.";
+    }
+
+    if (symptom) {
+        return buildChatbotSymptomReply(symptom);
+    }
+
+    if (term.includes("hospital") || term.includes("clinic") || term.includes("doctor") || term.includes("pharmacy") || term.includes("near")) {
+        return `I can help you open nearby healthcare search. You can use your location on the Find Care page or search by city, area, or care type.${createChatbotActions([{ label: "Open Find Care", href: "find-care.html" }, { label: "Hospitals near me", type: "button", action: "nearby-hospitals" }])}`;
+    }
+
+    if (term.includes("emergency") || term.includes("ambulance") || term.includes("urgent")) {
+        return `For emergency symptoms like chest pain, severe breathing difficulty, fainting, heavy bleeding, or sudden weakness, seek urgent medical care immediately.${createChatbotActions([{ label: "Emergency contacts", href: "contact.html" }, { label: "Find hospitals", type: "button", action: "nearby-hospitals" }])}`;
+    }
+
+    if (term.includes("self") || term.includes("care") || term.includes("video") || term.includes("resource") || term.includes("remedy")) {
+        return `The self-care page has symptom-based videos and basic health education for fever, cold, cough, headache, stomach pain, allergy, and more.${createChatbotActions([{ label: "Open self-care", href: "self-care.html" }])}`;
+    }
+
+    return `I could not match that yet. Try one of these symptoms: fever, cold, headache, cough, stomach pain, vomiting, weakness, allergy, sore throat, dizziness, chest pain, or breathing difficulty.${createChatbotActions([{ label: "Check symptoms", href: "find-care.html" }, { label: "Emergency contacts", href: "contact.html" }])}`;
+}
+
+function setupAIChatbot() {
+    if (document.querySelector("[data-ai-chatbot]")) return;
+
+    const chatbot = document.createElement("aside");
+    chatbot.className = "ai-chatbot";
+    chatbot.dataset.aiChatbot = "true";
+    chatbot.innerHTML = `
+        <button class="chatbot-launcher" type="button" data-chatbot-toggle aria-expanded="false" aria-label="Open HealthConnect AI chat">
+            <span>AI</span>
+        </button>
+        <section class="chatbot-panel" aria-label="HealthConnect AI chatbot" hidden>
+            <div class="chatbot-header">
+                <div>
+                    <strong>HealthConnect AI</strong>
+                    <span>Educational health assistant</span>
+                </div>
+                <button type="button" class="chatbot-close" data-chatbot-close aria-label="Close chat">&times;</button>
+            </div>
+            <div class="chatbot-messages" data-chatbot-messages aria-live="polite"></div>
+            <div class="chatbot-quick-replies" data-chatbot-quick-replies></div>
+            <form class="chatbot-form" data-chatbot-form>
+                <label class="sr-only" for="chatbot-input">Message HealthConnect AI</label>
+                <input id="chatbot-input" data-chatbot-input type="text" autocomplete="off" placeholder="Type a symptom or question">
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    `;
+
+    document.body.appendChild(chatbot);
+
+    const toggle = chatbot.querySelector("[data-chatbot-toggle]");
+    const close = chatbot.querySelector("[data-chatbot-close]");
+    const panel = chatbot.querySelector(".chatbot-panel");
+    const messages = chatbot.querySelector("[data-chatbot-messages]");
+    const form = chatbot.querySelector("[data-chatbot-form]");
+    const input = chatbot.querySelector("[data-chatbot-input]");
+    const quickReplies = chatbot.querySelector("[data-chatbot-quick-replies]");
+
+    const openChat = () => {
+        panel.hidden = false;
+        toggle.setAttribute("aria-expanded", "true");
+        setTimeout(() => input.focus(), 0);
+    };
+
+    const closeChat = () => {
+        panel.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.focus();
+    };
+
+    const addMessage = (content, sender) => {
+        messages.appendChild(createChatbotMessage(content, sender));
+        messages.scrollTop = messages.scrollHeight;
+    };
+
+    const sendMessage = (value) => {
+        const trimmed = value.trim();
+        if (!trimmed) return;
+        addMessage(escapeHTML(trimmed), "user");
+        input.value = "";
+        window.setTimeout(() => addMessage(buildChatbotReply(trimmed), "bot"), 180);
+    };
+
+    quickReplies.innerHTML = chatbotQuickReplies().map((reply) => `<button type="button" data-chatbot-reply="${escapeHTML(reply)}">${escapeHTML(reply)}</button>`).join("");
+    addMessage(getChatbotIntro(), "bot");
+
+    toggle.addEventListener("click", () => panel.hidden ? openChat() : closeChat());
+    close.addEventListener("click", closeChat);
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        sendMessage(input.value);
+    });
+    quickReplies.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-chatbot-reply]");
+        if (button) sendMessage(button.dataset.chatbotReply);
+    });
+    messages.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-chatbot-action]");
+        if (!button) return;
+        if (button.dataset.chatbotAction === "nearby-hospitals") findNearestHospital();
+        if (button.dataset.chatbotAction === "find-care") window.location.href = "find-care.html";
+    });
+}
 function setupRevealTransitions() {
     const motionTargets = [
         ".site-header",
@@ -325,7 +474,7 @@ function setupRevealTransitions() {
     items.forEach((item) => observer.observe(item));
 }
 
-document.addEventListener("DOMContentLoaded", () => { setupHomeSearch(); setupSymptomChecker(); setupResourceSearch(); setupHospitalSearch(); setupThemeToggle(); setupDemoForms(); setupAccessibleEnhancements(); setupRevealTransitions(); });
+document.addEventListener("DOMContentLoaded", () => { setupHomeSearch(); setupSymptomChecker(); setupResourceSearch(); setupHospitalSearch(); setupThemeToggle(); setupDemoForms(); setupAccessibleEnhancements(); setupAIChatbot(); setupRevealTransitions(); });
 
 
 
